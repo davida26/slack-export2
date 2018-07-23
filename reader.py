@@ -105,7 +105,7 @@ class Reader(object):
                 all_mpim_users.append(mpim_members)
             except KeyError:
                 mpim_members = None
-
+                
         return all_mpim_users
 
 
@@ -152,10 +152,9 @@ class Reader(object):
                     # loads all messages
                     try:
                         day_messages = json.load(f)
+                        messages.extend([Message(self.__USER_DATA, data, d) for d in day_messages])
                     except ValueError:
-                        print "Day Message Not Found, Skipping"
-                    
-                    messages.extend([Message(self.__USER_DATA, data, d) for d in day_messages])
+                        day_messages = ''
 
             chats[name] = messages
 
@@ -180,3 +179,4 @@ class Reader(object):
                 return {u["id"]: u for u in json.load(f)}
         except IOError:
             return {}
+
