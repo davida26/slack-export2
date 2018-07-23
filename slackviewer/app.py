@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import flask
 
 
@@ -23,6 +22,7 @@ def channel_name(name):
                                  groups=sorted(groups),
                                  dm_users=dm_users,
                                  mpim_users=mpim_users)
+
 
 @app.route("/group/<name>/")
 def group_name(name):
@@ -75,29 +75,7 @@ def mpim_name(name):
 @app.route("/")
 def index():
     channels = list(flask._app_ctx_stack.channels.keys())
-    # return flask.render_template("home.html")
     if "general" in channels:
         return channel_name("general")
     else:
         return channel_name(channels[0])
-
-@app.route("/dashboard")
-def dashboard():
-    channels = list(flask._app_ctx_stack.channels.keys())
-    groups = list(flask._app_ctx_stack.groups.keys())
-    dm_users = list(flask._app_ctx_stack.dm_users)
-    mpim_users = list(flask._app_ctx_stack.mpim_users)
-    
-    return flask.render_template("home.html", channels=sorted(channels),
-                                groups=sorted(groups),
-                                dm_users=dm_users,
-                                mpim_users=mpim_users)
-
-=======
-#!/usr/bin/env python
-
-from slackviewer.main import main
-
-if __name__ == '__main__':
-    main()
->>>>>>> b94a59185650b8a3ae389938a014cd10d5612e66

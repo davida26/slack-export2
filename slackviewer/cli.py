@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import click
 import shutil
 
@@ -26,11 +25,3 @@ def clean(wet):
             print("Nothing to remove! {} does not exist.".format(SLACKVIEWER_TEMP_PATH))
     else:
         print("Run with -w to remove {}".format(SLACKVIEWER_TEMP_PATH))
-=======
-#!/usr/bin/env python
-
-from slackviewer.cli import cli
-
-if __name__ == '__main__':
-    cli()
->>>>>>> b94a59185650b8a3ae389938a014cd10d5612e66
