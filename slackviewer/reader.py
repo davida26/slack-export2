@@ -65,8 +65,11 @@ class Reader(object):
         for dm in dms:
             # checks if messages actually exsist
             if dm["id"] not in self._EMPTY_DMS:
-                dm_members = {"id": dm["id"], "users": [self.__USER_DATA[m] for m in dm["members"]]}
-                all_dms_users.append(dm_members)
+                try:
+                    dm_members = {"id": dm["id"], "users": [self.__USER_DATA[m] for m in dm["members"]]}
+                    all_dms_users.append(dm_members)
+                except KeyError:
+                    dm_members = None
 
         return all_dms_users
 
@@ -97,9 +100,12 @@ class Reader(object):
         all_mpim_users = []
 
         for mpim in mpims:
-            mpim_members = {"name": mpim["name"], "users": [self.__USER_DATA[m] for m in mpim["members"]]}
-            all_mpim_users.append(mpim_members)
-
+            try:
+                mpim_members = {"name": mpim["name"], "users": [self.__USER_DATA[m] for m in mpim["members"]]}
+                all_mpim_users.append(mpim_members)
+            except KeyError:
+                mpim_members = None
+                
         return all_mpim_users
 
 
@@ -144,7 +150,16 @@ class Reader(object):
             for day in sorted(day_files):
                 with io.open(os.path.join(self._PATH, day), encoding="utf8") as f:
                     # loads all messages
-                    day_messages = json.load(f)
+                    # msgs = []
+                    # for line in msgs:
+                    #     msgs.append(json.loads(line))
+
+                    # day_messages = msgs
+                    try:
+                        day_messages = json.load(f)
+                    except ValueError:
+                        day_messages = ''
+
                     messages.extend([Message(self.__USER_DATA, data, d) for d in day_messages])
 
             chats[name] = messages
@@ -170,3 +185,4 @@ class Reader(object):
                 return {u["id"]: u for u in json.load(f)}
         except IOError:
             return {}
+
