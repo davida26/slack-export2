@@ -25,17 +25,23 @@ Slack team's export (instead of having to dive into hundreds of JSON files).
 
 ## Installation
 
-I recommend [`pipsi`](https://github.com/mitsuhiko/pipsi) for a nice 
-isolated install.
+Manual
+```
+git clone git@github.com:davida26/slack-export2.git
+mv slack-export-viewer
+cd slack-export-viewer
+python setup.py install
 
-```bash
-pipsi install slack-export-viewer
 ```
 
 Or just feel free to use `pip` as you like.
 
+```zsh
+sudo pip install -e "git://git@github.com:davida26/slack-export2.git#egg=slack-export-viewer"
+```
+
 ```bash
-pip install slack-export-viewer
+pip install git://git@github.com:davida26/slack-export2.git#egg=slack-export-viewer
 ```
 
 `slack-export-viewer` will be installed as an entry-point; run from anywhere.
@@ -105,12 +111,10 @@ Removing C:\Users\hamza\AppData\Local\Temp\_slackviewer...
 
 Credit to Pieter Levels whose [blog post](https://levels.io/slack-export-to-html/) and PHP script I used as a jumping off point for this.
 
-### Improvements over Pieter's script
+Credit to Hamza for improvements over Pieter's script
 
- `slack-export-viewer` is similar in core functionality but adds several things on top to make it nicer to use:
 
-* An installable application
-* Automated archive extraction and retention
-* A Slack-like sidebar that lets you switch channels easily
-* Much more "sophisticated" rendering of messages
-* A Flask server which lets you serve the archive contents as opposed to a PHP script which does static file generation
+### Improvements over Hamza's script
+
+ Support for external workspaces
+ Handling cases where users or things like GIFS are not found by ID
