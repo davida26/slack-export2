@@ -118,3 +118,5 @@ Credit to Hamza for improvements over Pieter's script
 
  Support for external workspaces
  Handling cases where users or things like GIFS are not found by ID
+ Added new script to make it easier to run. Simply click to run and drag the slack .zip file into the window.
+ https://www.dropbox.com/s/8zniqao3v8dz417/slack-export-viewer.bat?dl=0
